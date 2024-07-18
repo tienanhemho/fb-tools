@@ -18,7 +18,8 @@ echo ""
 echo ""
 
 #ask user enter image URL
-read -p "Enter image URL: " IMAGE_URL
+echo -n "Please enter image URL: "
+read IMAGE_URL
 
 echo "you entered: $IMAGE_URL"
 
