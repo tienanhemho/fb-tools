@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# wget -qO- https://raw.githubusercontent.com/ngxson/public-assets/main/install-windows-gcp.sh | sudo bash
+# wget -qO- link_thiscript | sudo bash
 
 IMAGE_URL="https://huggingface.co/ngxson/windows-10-ggcloud/resolve/main/windows-10-ggcloud.raw.gz"
 
@@ -19,14 +19,21 @@ echo ""
 
 #ask user enter image URL
 echo -n "Please enter image URL: "
-read IMAGE_URL
+read IMAGE_URL_NEW
+echo "you entered: $IMAGE_URL_NEW"
 
-echo "you entered: $IMAGE_URL"
-
-# check if image URL is valid
-if ! curl --output /dev/null --silent --head --fail "$IMAGE_URL"; then
+# check if image URL is valid else
+if ! curl --output /dev/null --silent --head --fail "$IMAGE_URL_NEW"; then
     echo "ERROR: Invalid image URL"
-    exit 1
+    #ask user use default image URL or exit (y/n) default is no
+    echo "default image URL: $IMAGE_URL"
+    echo -n "Use default image URL (y/n)? "
+    read ANSWER
+    if [ "$ANSWER" != "y" ]; then
+        exit 1
+    fi
+else 
+  IMAGE_URL=$IMAGE_URL_NEW
 fi
 
 # download image
